@@ -28,6 +28,9 @@ class StartMenu:
                         self.producer_btn,
                         self.start_btn]
         self.last_page_btn = Events().buttons[4]
+        self.last_page_btn2 = Events().buttons[4].image
+        self.last_page_btn2_rect = self.last_page_btn2.get_rect()
+        self.last_page_btn2_rect.center = (50,540)
         # music and sound
         self.sound = pygame.mixer.Sound("./music/bg_music.wav")
         # page
@@ -79,7 +82,19 @@ class StartMenu:
                                 run2 = False
                             else:  # producer page
                                 run2 = True
-
+                    elif self.introduce_btn.clicked(x, y):
+                        run2 = True
+                        while run2:
+                            self.menu_win.blit(INTRO_BACKGROUND, (0, 0))
+                            
+                            self.menu_win.blit(self.last_page_btn2,self.last_page_btn2_rect)
+                            quit, last = self.intro_page_show()
+                            if quit:
+                                return False
+                            if last:  # last page
+                                run2 = False
+                            else:  # producer page
+                                run2 = True
                         pygame.display.update()
                         
                     """(Q1.1) music on/off according to the button"""
@@ -97,6 +112,16 @@ class StartMenu:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
                 if self.last_page_btn.image_rect.collidepoint(x, y):
+                    return False, True
+            if event.type == pygame.QUIT:
+                return True, False
+        pygame.display.update()
+        return False, False
+    def intro_page_show(self):
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+                if self.last_page_btn2_rect.collidepoint(x, y):
                     return False, True
             if event.type == pygame.QUIT:
                 return True, False

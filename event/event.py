@@ -158,7 +158,7 @@ class Events:
             elif self.using_player == 2:
                 self.event_list = [1,2,3,4,5,6]
             random.shuffle(self.event_list)
-            print(self.event_list)
+            #print(self.event_list)
         get = 0
         for player in self.players.player_btn:
             if player.buy_rect.collidepoint(x,y) and player.show_buy:
@@ -168,7 +168,7 @@ class Events:
                     dict_temp[player.name] = str(1)
                     player.unlock = True
                     player.show_buy = False
-                    print(dict_temp)
+                    #print(dict_temp)
                     file = open('dict.txt', 'w') 
                     for k,v in dict_temp.items():
                         file.write(str(k)+' '+str(v)+'\n')
@@ -460,8 +460,8 @@ class Events:
         game.game_model.add_2[1] = tower_upgrade2
         game.game_model.add_2[2] = money_get2
 
-        print(game.game_model.add_1)
-        print(game.game_model.add_2)
+        #print(game.game_model.add_1)
+        #print(game.game_model.add_2)
 
 
         game.game_model.notify = self.notify
@@ -484,6 +484,10 @@ class Events:
         self.chosen = []
         percentage = [0,10,20,40,60,100]
         while True:
+            surface = pygame.Surface((WIN_WIDTH, WIN_HEIGHT), pygame.SRCALPHA)
+            transparency = 10
+            pygame.draw.rect(surface, (150, 150, 150, transparency), (0,0,WIN_WIDTH, WIN_HEIGHT))
+            self.win.blit(surface, (0, 0))
             self.win.blit(WIN_STAGE_BG[self.using_player-1],(0,0))
             text = '* ' + str(game.game_model.tower_money) #塔防幣
             show_text(self.win,text,23,616,473)
@@ -521,6 +525,10 @@ class Events:
             pygame.mixer.music.pause()
             self.win_sound.play()
         while True:
+            surface = pygame.Surface((WIN_WIDTH, WIN_HEIGHT), pygame.SRCALPHA)
+            transparency = 10
+            pygame.draw.rect(surface, (122, 122, 122, transparency), (0,0,WIN_WIDTH, WIN_HEIGHT))
+            self.win.blit(surface, (0, 0))
             self.win.blit(ALL_PASS_BG[self.using_player-1],(0,0))
             text = '* ' + str(game.game_model.tower_money)#塔防幣
             show_text(self.win,text,23,610,473)
@@ -553,6 +561,11 @@ class Events:
         
         percentage = [0,10,20,40,60,100]
         while True:
+            surface = pygame.Surface((WIN_WIDTH, WIN_HEIGHT), pygame.SRCALPHA)
+            transparency = 10
+            pygame.draw.rect(surface, (122, 122, 122, transparency), (0,0,WIN_WIDTH, WIN_HEIGHT))
+            self.win.blit(surface, (0, 0))
+
             self.win.blit(FAIL_BG[self.using_player-1],(0,0))
             text = '* ' + str(game.game_model.tower_money)#塔防幣
             show_text(self.win,text,23,610,473)

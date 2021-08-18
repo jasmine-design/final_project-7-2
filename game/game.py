@@ -8,8 +8,8 @@ import os
 
 class Game:
     def __init__(self,player:int) -> None:
-        print('build game')
-        print(player)
+        #print('build game')
+        #print(player)
         self.game_model = GameModel(player)  # core of the game (database, game logic...)
         self.game_view = GameView(player)  # render everything
         self.keep_going = False
@@ -78,7 +78,7 @@ class Game:
                 self.keep_going = False
             else:
                 pass
-        print(self.keep_going,self.fail,self.all_pass,self.quit_game)
+        #print(self.keep_going,self.fail,self.all_pass,self.quit_game)
         return self.quit_game
     def mute(self,mute:bool):
         self.game_model.mute = mute
